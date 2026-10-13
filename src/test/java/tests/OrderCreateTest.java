@@ -76,10 +76,12 @@ public class OrderCreateTest extends BaseUserTest {
             "Примечание: в документации для этого кейса указан 500 Internal Server Error, ожидаем 400 по уточнению.")
     public void testCreateOrderWithInvalidHash() {
 
+        String[] hashes = getIngredientHashes(3);
+        hashes[1] = "invalid_hash_12345";
+
         Response response = createOrder(
-                new Order(
-                        new String[]{"invalid_hash_12345"}),
-                        accessToken
+                new Order(hashes),
+                accessToken
         );
 
         checkStatusCode(response, 400);
