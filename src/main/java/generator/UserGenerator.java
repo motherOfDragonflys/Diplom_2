@@ -12,7 +12,7 @@ public class UserGenerator {
 
         return new User(
                 email,
-                "Pass!321",
+                "pAss!321",
                 "Тестовый котик"
         );
     }
