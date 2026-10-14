@@ -1,7 +1,7 @@
 package tests;
 
 import base.BaseUserTest;
-import static generator.UserGenerator.*;
+import static data.UserGenerator.*;
 import static steps.UserSteps.*;
 import static steps.CommonSteps.*;
 

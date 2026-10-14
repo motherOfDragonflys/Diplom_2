@@ -8,7 +8,7 @@ import io.restassured.response.Response;
 import org.junit.After;
 import org.junit.Before;
 
-import static generator.UserGenerator.randomUser;
+import static data.UserGenerator.randomUser;
 import static steps.UserSteps.*;
 
 /*  Логика пользователей

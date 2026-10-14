@@ -1,4 +1,4 @@
-package generator;
+package data;
 
 import model.User;
 import java.util.UUID;
