@@ -69,7 +69,7 @@ public class OrderCreateTest extends BaseUserTest {
     }
 
     @Test
-    @DisplayName("Заказ с неверным хешем ингредиента")
+    @DisplayName("Заказ с авторизацией и неверным хешем ингредиента")
     @Description("Проверяем: \n" +
             "  - заказ с несуществующим хешем ингредиента не создаётся, \n" +
             "  - сервер возвращает код 400 Bad Request.\n" +
