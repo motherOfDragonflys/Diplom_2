@@ -16,7 +16,7 @@ import org.junit.Test;
 public class OrderCreateTest extends BaseUserTest {
 
     @Test
-    @DisplayName("Заказ с авторизацией и валидными ингредиентами")
+    @DisplayName("Создание заказа с авторизацией, с валидными ингредиентами")
     @Description("Проверяем: \n" +
             "  - можно создать заказ под авторизованным пользователем, \n" +
             "  - запрос возвращает код 200 OK, \n" +
@@ -35,7 +35,7 @@ public class OrderCreateTest extends BaseUserTest {
     }
 
     @Test
-    @DisplayName("Заказ без авторизации и валидными ингредиентами")
+    @DisplayName("Попытка создать заказ без авторизации, с валидными ингредиентами")
     @Description("Проверяем: \n" +
             "  - нельзя создать заказ без авторизации, \n" +
             "  - запрос возвращает код 401 Unauthorized, \n" +
@@ -51,7 +51,7 @@ public class OrderCreateTest extends BaseUserTest {
     }
 
     @Test
-    @DisplayName("Заказ с авторизацией без ингредиентов")
+    @DisplayName("Попытка создать заказ с авторизацией, без ингредиентов")
     @Description("Проверяем: \n" +
             "  - нельзя создать заказ без ингредиентов, \n" +
             "  - запрос возвращает код 400 Bad Request, \n" +
@@ -69,7 +69,7 @@ public class OrderCreateTest extends BaseUserTest {
     }
 
     @Test
-    @DisplayName("Заказ с авторизацией и неверным хешем ингредиента")
+    @DisplayName("Попытка создать заказ с авторизацией и неверным хешем ингредиента")
     @Description("Проверяем: \n" +
             "  - заказ с несуществующим хешем ингредиента не создаётся, \n" +
             "  - сервер возвращает код 400 Bad Request.\n" +

@@ -17,7 +17,10 @@ import static steps.UserSteps.*;
     - After удаляет пользователя по сохранённому accessToken
 */
 
-public class BaseUserTest extends BaseApiTest {
+/**
+ * ____⚠️⚠️⚠️____ЗАМЕНИТЬ extends "BaseWireMockTest" на "BaseApiTest" при прогоне НА РЕАЛЬНОМ СЕРВЕРЕ____⚠️⚠️⚠️_______
+ */
+public class BaseUserTest extends BaseWireMockTest {
 
     protected User user;
     protected String accessToken;

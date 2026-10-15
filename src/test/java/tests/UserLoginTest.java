@@ -16,7 +16,7 @@ import org.junit.Test;
 public class UserLoginTest extends BaseUserTest {
 
     @Test
-    @DisplayName("Логин существующего пользователя")
+    @DisplayName("Вход пользователя с существующей парой email-пароль")
     @Description("Проверяем: \n" +
             "  - можно войти под существующим пользователем, \n" +
             "  - запрос возвращает правильный код ответа, \n" +
@@ -31,6 +31,27 @@ public class UserLoginTest extends BaseUserTest {
         checkAccessToken(response);
         checkRefreshToken(response);
         checkUserInResponse(response, user);
+    }
+
+    @Test
+    @DisplayName("Попытка входа с паролем, отличающимся только регистром")
+    @Description("Проверяем: \n" +
+            "  - пароль в другом регистре не считается верным (сервер не нормализует пароли), \n" +
+            "  - запрос возвращает код 401 Unauthorized, \n" +
+            "  - в ответе success: false и сообщение о неверных учётных данных. \n" +
+            "  Примечание: регистр пароля в документации не оговорён, кейс фиксирует фактическое поведение.")
+    public void testLoginWithCaseChangedPassword() {
+
+        User wrongCaseUser = new User(
+                user.getEmail(),
+                user.getPassword().toLowerCase(),
+                user.getName());
+
+        Response response = loginUser(wrongCaseUser);
+
+        checkStatusCode(response, 401);
+        checkSuccessField(response, false);
+        checkErrorMessage(response, "email or password are incorrect");
     }
 
     @Test
@@ -93,24 +114,5 @@ public class UserLoginTest extends BaseUserTest {
         checkErrorMessage(response, "email or password are incorrect");
     }
 
-    @Test
-    @DisplayName("Вход с паролем, отличающимся только регистром")
-    @Description("Проверяем: \n" +
-            "  - пароль в другом регистре не считается верным (сервер не нормализует пароли), \n" +
-            "  - запрос возвращает код 401 Unauthorized, \n" +
-            "  - в ответе success: false и сообщение о неверных учётных данных. \n" +
-            "  Примечание: регистр пароля в документации не оговорён, кейс фиксирует фактическое поведение.")
-    public void testLoginWithCaseChangedPassword() {
 
-        User wrongCaseUser = new User(
-                user.getEmail(),
-                user.getPassword().toLowerCase(),
-                user.getName());
-
-        Response response = loginUser(wrongCaseUser);
-
-        checkStatusCode(response, 401);
-        checkSuccessField(response, false);
-        checkErrorMessage(response, "email or password are incorrect");
-    }
 }
