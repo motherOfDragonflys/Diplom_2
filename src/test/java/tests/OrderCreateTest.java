@@ -3,6 +3,8 @@ package tests;
 import base.BaseUserTest;
 
 import model.Order;
+
+import static org.apache.http.HttpStatus.*;
 import static steps.CommonSteps.*;
 import static steps.OrderSteps.*;
 
@@ -28,7 +30,7 @@ public class OrderCreateTest extends BaseUserTest {
                 accessToken
         );
 
-        checkStatusCode(response, 200);
+        checkStatusCode(response, SC_OK);
         checkSuccessField(response, true);
         checkOrderName(response);
         checkOrderNumber(response);
@@ -46,7 +48,7 @@ public class OrderCreateTest extends BaseUserTest {
                 new Order(getIngredientHashes(3))
         );
 
-        checkStatusCode(response, 401);
+        checkStatusCode(response, SC_UNAUTHORIZED);
         checkSuccessField(response, false);
     }
 
@@ -63,7 +65,7 @@ public class OrderCreateTest extends BaseUserTest {
                 accessToken
         );
 
-        checkStatusCode(response, 400);
+        checkStatusCode(response, SC_BAD_REQUEST);
         checkSuccessField(response, false);
         checkErrorMessage(response, "Ingredient ids must be provided");
     }
@@ -84,7 +86,7 @@ public class OrderCreateTest extends BaseUserTest {
                 accessToken
         );
 
-        checkStatusCode(response, 400);
+        checkStatusCode(response, SC_BAD_REQUEST);
         checkSuccessField(response, false);
     }
 }

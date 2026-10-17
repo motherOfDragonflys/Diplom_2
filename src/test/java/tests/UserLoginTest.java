@@ -2,6 +2,8 @@ package tests;
 
 import base.BaseUserTest;
 import model.User;
+
+import static org.apache.http.HttpStatus.*;
 import static steps.CommonSteps.*;
 import static steps.UserSteps.*;
 
@@ -26,7 +28,7 @@ public class UserLoginTest extends BaseUserTest {
 
         Response response = loginUser(user);
 
-        checkStatusCode(response, 200);
+        checkStatusCode(response, SC_OK);
         checkSuccessField(response, true);
         checkAccessToken(response);
         checkRefreshToken(response);
@@ -49,7 +51,7 @@ public class UserLoginTest extends BaseUserTest {
 
         Response response = loginUser(wrongCaseUser);
 
-        checkStatusCode(response, 401);
+        checkStatusCode(response, SC_UNAUTHORIZED);
         checkSuccessField(response, false);
         checkErrorMessage(response, "email or password are incorrect");
     }
@@ -69,7 +71,7 @@ public class UserLoginTest extends BaseUserTest {
 
         Response response = loginUser(wrongUser);
 
-        checkStatusCode(response, 401);
+        checkStatusCode(response, SC_UNAUTHORIZED);
         checkSuccessField(response, false);
         checkErrorMessage(response, "email or password are incorrect");
     }
@@ -89,7 +91,7 @@ public class UserLoginTest extends BaseUserTest {
 
         Response response = loginUser(wrongEmailUser);
 
-        checkStatusCode(response, 401);
+        checkStatusCode(response, SC_UNAUTHORIZED);
         checkSuccessField(response, false);
         checkErrorMessage(response, "email or password are incorrect");
     }
@@ -109,7 +111,7 @@ public class UserLoginTest extends BaseUserTest {
 
         Response response = loginUser(wrongPassUser);
 
-        checkStatusCode(response, 401);
+        checkStatusCode(response, SC_UNAUTHORIZED);
         checkSuccessField(response, false);
         checkErrorMessage(response, "email or password are incorrect");
     }

@@ -2,9 +2,9 @@ package tests;
 
 import base.BaseUserTest;
 import static data.UserGenerator.*;
+import static org.apache.http.HttpStatus.*;
 import static steps.UserSteps.*;
 import static steps.CommonSteps.*;
-
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.junit4.DisplayName;
@@ -32,7 +32,7 @@ public class UserCreateTest extends BaseUserTest {
         Response response = createUser(user);
         rememberTokenIfCreated(response);
 
-        checkStatusCode(response, 200);
+        checkStatusCode(response, SC_OK);
         checkSuccessField(response, true);
         checkAccessToken(response);
         checkRefreshToken(response);
@@ -50,12 +50,12 @@ public class UserCreateTest extends BaseUserTest {
         user = randomUser();
 
         Response creationResponse = createUser(user);
-        checkStatusCode(creationResponse, 200);
+        checkStatusCode(creationResponse, SC_OK);
         rememberTokenIfCreated(creationResponse);
 
         Response duplicateResponse = createUser(user);
 
-        checkStatusCode(duplicateResponse, 403);
+        checkStatusCode(duplicateResponse, SC_FORBIDDEN);
         checkSuccessField(duplicateResponse, false);
         checkErrorMessage(duplicateResponse, "User already exists");
     }
@@ -74,7 +74,7 @@ public class UserCreateTest extends BaseUserTest {
         Response response = createUser(user);
         rememberTokenIfCreated(response);
 
-        checkStatusCode(response, 403);
+        checkStatusCode(response, SC_FORBIDDEN);
         checkSuccessField(response, false);
         checkErrorMessage(response, "Email, password and name are required fields");
     }
@@ -93,7 +93,7 @@ public class UserCreateTest extends BaseUserTest {
         Response response = createUser(user);
         rememberTokenIfCreated(response);
 
-        checkStatusCode(response, 403);
+        checkStatusCode(response, SC_FORBIDDEN);
         checkSuccessField(response, false);
         checkErrorMessage(response, "Email, password and name are required fields");
     }
@@ -112,7 +112,7 @@ public class UserCreateTest extends BaseUserTest {
         Response response = createUser(user);
         rememberTokenIfCreated(response);
 
-        checkStatusCode(response, 403);
+        checkStatusCode(response, SC_FORBIDDEN);
         checkSuccessField(response, false);
         checkErrorMessage(response, "Email, password and name are required fields");
     }
