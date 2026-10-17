@@ -1,13 +1,12 @@
 package model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class Order {
     private final String[] ingredients;
-
-    public Order(String[] ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public String[] getIngredients() {
-        return ingredients;
-    }
 }
