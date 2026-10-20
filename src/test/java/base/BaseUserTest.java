@@ -16,11 +16,7 @@ import static steps.UserSteps.*;
     - Тесты, где создание - предмет проверки, переопределяют setUpUser() пустым
     - After удаляет пользователя по сохранённому accessToken
 */
-
-/**
- * ____⚠️⚠️⚠️____ЗАМЕНИТЬ extends "BaseWireMockTest" на "BaseApiTest" при прогоне НА РЕАЛЬНОМ СЕРВЕРЕ____⚠️⚠️⚠️_______
- */
-public class BaseUserTest extends BaseWireMockTest {
+public class BaseUserTest extends BaseApiTest {
 
     protected User user;
     protected String accessToken;

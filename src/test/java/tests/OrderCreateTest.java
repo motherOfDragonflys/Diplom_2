@@ -2,6 +2,7 @@ package tests;
 
 import base.BaseUserTest;
 
+import io.qameta.allure.Issue;
 import model.Order;
 
 import static org.apache.http.HttpStatus.*;
@@ -42,6 +43,7 @@ public class OrderCreateTest extends BaseUserTest {
             "  - нельзя создать заказ без авторизации, \n" +
             "  - запрос возвращает код 401 Unauthorized, \n" +
             "  - в ответе success: false")
+    @Issue("BUG-1 Заказ создается без авторизации: ответ 200 вместо 401")
     public void testCreateOrderWithoutAuth() {
 
         Response response = createOrderWithoutAuth(
@@ -76,6 +78,7 @@ public class OrderCreateTest extends BaseUserTest {
             "  - заказ с несуществующим хешем ингредиента не создаётся, \n" +
             "  - сервер возвращает код 400 Bad Request.\n" +
             "Примечание: в документации для этого кейса указан 500 Internal Server Error, ожидаем 400 по уточнению.")
+    @Issue("BUG-2 Ошибка 500 \"Internal Server Error\" вместо 400")
     public void testCreateOrderWithInvalidHash() {
 
         String[] hashes = getIngredientHashes(3);
